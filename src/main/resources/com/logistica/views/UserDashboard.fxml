@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.UserDashboardController" style="-fx-background-color: #1a1a2e;">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.logistica.viewController.UserDashboardController"
+            stylesheets="@../css/styles.css">
     <top>
-        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #16213e; -fx-padding: 12;">
-            <Label text="BookIt - Portal Cliente" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Mis Compras" onAction="#verCompras" style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 8;" />
-            <Button text="Cerrar Sesión" onAction="#logout" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+            <Label text="🎫 BookIt" styleClass="label-title" style="-fx-font-size: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Mi Perfil" onAction="#verPerfil" styleClass="btn-ghost"/>
+            <Button text="Mis Compras" onAction="#verCompras" styleClass="btn-ghost"/>
+            <Button text="Cerrar Sesión" onAction="#logout" styleClass="button"/>
         </HBox>
     </top>
     <center>
-        <VBox spacing="12" style="-fx-padding: 18;">
-            <Label text="Eventos Disponibles" style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;" />
-            <HBox spacing="10">
-                <TextField fx:id="txtFiltroCiudad" promptText="Filtrar por ciudad" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 6;" />
-                <TextField fx:id="txtFiltroCategoria" promptText="Filtrar por categoría" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 6;" />
-                <Button text="Buscar" onAction="#filtrarEventos" style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6 16;" />
+        <VBox spacing="14" style="-fx-padding: 20;">
+            <Label text="Explorar Eventos" styleClass="label-title" style="-fx-font-size: 22;"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="txtFiltroCiudad" promptText="Ciudad" prefWidth="140"/>
+                <TextField fx:id="txtFiltroCategoria" promptText="Categoría" prefWidth="140"/>
+                <TextField fx:id="txtFiltroPrecio" promptText="Precio máximo" prefWidth="130"/>
+                <Button text="🔍 Buscar" onAction="#filtrarEventos" styleClass="btn-primary"/>
+                <Button text="Limpiar" onAction="#limpiarFiltros" styleClass="btn-ghost"/>
             </HBox>
-            <ListView fx:id="lstEventos" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="Ver Detalles / Comprar" onAction="#verDetalles" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25;" />
-            </HBox>
+            <Separator/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                <FlowPane fx:id="flowEventos" hgap="16" vgap="16" style="-fx-padding: 5;"/>
+            </ScrollPane>
         </VBox>
     </center>
 </BorderPane>

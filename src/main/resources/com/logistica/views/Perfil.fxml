@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.logistica.viewController.PerfilController"
+      stylesheets="@../css/styles.css" style="-fx-padding: 20;">
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+        <Label text="👤 Mi Perfil" styleClass="label-title" style="-fx-font-size: 22;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="← Volver" onAction="#volver" styleClass="btn-ghost"/>
+    </HBox>
+    <HBox spacing="20">
+        <VBox spacing="12" styleClass="card" prefWidth="400">
+            <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+            <Label text="Datos Personales" styleClass="label-section"/>
+            <Label text="Nombre" styleClass="label-muted"/>
+            <TextField fx:id="txtNombre"/>
+            <Label text="Correo" styleClass="label-muted"/>
+            <TextField fx:id="txtEmail"/>
+            <Label text="Teléfono" styleClass="label-muted"/>
+            <TextField fx:id="txtTelefono"/>
+            <Button text="Guardar Cambios" onAction="#guardarPerfil" styleClass="btn-primary" maxWidth="Infinity"/>
+            <Label fx:id="lblMsg" styleClass="label-success"/>
+        </VBox>
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+            <Label text="Métodos de Pago" styleClass="label-section"/>
+            <ListView fx:id="lstMetodosPago" prefHeight="150"/>
+            <Separator/>
+            <Label text="Agregar Método de Pago" styleClass="label-muted"/>
+            <HBox spacing="8">
+                <ComboBox fx:id="cmbTipoPago" promptText="Tipo" prefWidth="130"/>
+                <TextField fx:id="txtDetallePago" promptText="Detalle (ej: Visa **** 1234)" HBox.hgrow="ALWAYS"/>
+                <Button text="Agregar" onAction="#agregarMetodoPago" styleClass="btn-success"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

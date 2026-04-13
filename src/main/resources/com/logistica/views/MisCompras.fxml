@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.MisComprasController" style="-fx-background-color: #1a1a2e;">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.logistica.viewController.MisComprasController"
+            stylesheets="@../css/styles.css">
     <top>
-        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #16213e; -fx-padding: 12;">
-            <Label text="Mis Compras" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Cancelar Compra Seleccionada" onAction="#cancelarCompra" style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-padding: 8;" />
-            <Button text="Volver" onAction="#volver" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+            <Label text="🛍️ Mis Compras" styleClass="label-title" style="-fx-font-size: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Descargar CSV" onAction="#descargarCSV" styleClass="btn-ghost"/>
+            <Button text="Descargar PDF" onAction="#descargarPDF" styleClass="btn-ghost"/>
+            <Button text="← Volver" onAction="#volver" styleClass="btn-ghost"/>
         </HBox>
     </top>
     <center>
-        <VBox spacing="10" style="-fx-padding: 18;">
-            <ListView fx:id="lstCompras" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
-            <Label fx:id="lblDetalle" wrapText="true" style="-fx-text-fill: #a0a0a0; -fx-font-size: 12;" />
+        <VBox spacing="12" style="-fx-padding: 20;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ComboBox fx:id="cmbFiltroEstado" promptText="Filtrar por estado" prefWidth="180"/>
+                <Button text="Filtrar" onAction="#aplicarFiltro" styleClass="btn-primary"/>
+                <Button text="Limpiar" onAction="#limpiarFiltro" styleClass="btn-ghost"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Cancelar Compra" onAction="#cancelarCompra" styleClass="btn-danger"/>
+            </HBox>
+            <TableView fx:id="tblCompras" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="140"/>
+                    <TableColumn fx:id="colEvento" text="Evento" prefWidth="200"/>
+                    <TableColumn fx:id="colFecha" text="Fecha" prefWidth="130"/>
+                    <TableColumn fx:id="colTotal" text="Total" prefWidth="100"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="110"/>
+                    <TableColumn fx:id="colEntradas" text="Entradas" prefWidth="80"/>
+                </columns>
+            </TableView>
+            <VBox spacing="6" styleClass="card">
+                <padding><Insets top="12" bottom="12" left="12" right="12"/></padding>
+                <Label text="Detalle de Compra" styleClass="label-section"/>
+                <Label fx:id="lblDetalle" wrapText="true" styleClass="label-muted"/>
+            </VBox>
         </VBox>
     </center>
 </BorderPane>

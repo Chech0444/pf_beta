@@ -14,6 +14,7 @@
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/strategy/ITarifaStrategy.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/adapter/IPagoAdapter.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/strategy/TarifaEstandar.java
+/home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/viewController/PerfilController.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/factory/EntradaNumeradaFactory.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/Zona.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/AppLauncher.java
@@ -23,6 +24,7 @@
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/viewController/AdminDashboardController.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/PoliticasEvento.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/decorator/MerchandisingDecorator.java
+/home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/EstadoEntrada.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/EstadoAsiento.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/Entrada.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/decorator/SeguroCancelacionDecorator.java
@@ -38,6 +40,7 @@
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/MainApp.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/adapter/TarjetaCreditoAdapter.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/factory/IEntradaFactory.java
+/home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/viewController/RegistroController.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/viewController/UserDashboardController.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/state/CompraConfirmada.java
 /home/checho/.gemini/antigravity/scratch/proyecto_final/src/main/java/com/logistica/model/EstadoEvento.java

@@ -15,7 +15,8 @@ public class MainApp extends Application {
         GestionEventos.getInstance().inicializarDatosPrueba();
 
         Parent root = FXMLLoader.load(getClass().getResource("/com/logistica/views/Login.fxml"));
-        Scene scene = new Scene(root, 900, 650);
+        Scene scene = new Scene(root, 1024, 700);
+        scene.getStylesheets().add(getClass().getResource("/com/logistica/css/styles.css").toExternalForm());
 
         primaryStage.setTitle("BookIt - Plataforma de Gestión de Eventos");
         primaryStage.setScene(scene);

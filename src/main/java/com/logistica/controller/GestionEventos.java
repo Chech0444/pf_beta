@@ -61,9 +61,12 @@ public class GestionEventos {
         Usuario ana = new Usuario("U005", "Ana Martínez", "ana@test.com", "3045678901", "1234", false);
         ana.addMetodoPago(new MetodoPago("PayPal", "ana@paypal.com"));
 
-        Usuario admin2 = new Usuario("U006", "Operador Eventos", "operador@logistica.com", "3056789012", "admin123", true);
+        Usuario pedro = new Usuario("U006", "Pedro Rodríguez", "pedro@test.com", "3056789012", "1234", false);
+        pedro.addMetodoPago(new MetodoPago("Tarjeta", "Visa **** 3456"));
 
-        usuarios.addAll(Arrays.asList(admin, juan, maria, carlos, ana, admin2));
+        Usuario admin2 = new Usuario("U007", "Operador Eventos", "operador@logistica.com", "3067890123", "admin123", true);
+
+        usuarios.addAll(Arrays.asList(admin, juan, maria, carlos, ana, pedro, admin2));
 
         // --- RECINTOS Y ZONAS ---
         Recinto estadio = new Recinto("R001", "Estadio El Campín", "Cra 30 #57-60", "Bogotá");
@@ -84,12 +87,15 @@ public class GestionEventos {
         Zona palcoT = new Zona("Z004", "Palco", 100, 200000);
         Zona plateaT = new Zona("Z005", "Platea", 300, 120000);
         plateaT.setEstrategiaTarifa(new TarifaPreventa());
+        Zona balconT = new Zona("Z010", "Balcón", 150, 90000);
         for (int i = 1; i <= 8; i++) {
             palcoT.addAsiento(new Asiento("A-PA" + i, "PA", String.valueOf(i)));
             plateaT.addAsiento(new Asiento("A-PL" + i, "PL", String.valueOf(i)));
+            balconT.addAsiento(new Asiento("A-BA" + i, "BA", String.valueOf(i)));
         }
         teatro.administrarZonas(palcoT);
         teatro.administrarZonas(plateaT);
+        teatro.administrarZonas(balconT);
 
         Recinto centro = new Recinto("R003", "Centro de Convenciones", "Cra 37 #24-67", "Medellín");
         Zona salonA = new Zona("Z006", "Salón Principal", 800, 100000);
@@ -111,7 +117,17 @@ public class GestionEventos {
         plazaToros.administrarZonas(solPT);
         plazaToros.administrarZonas(sombraPT);
 
-        recintos.addAll(Arrays.asList(estadio, teatro, centro, plazaToros));
+        Recinto movistarArena = new Recinto("R005", "Movistar Arena", "Calle 63 #59A-06", "Bogotá");
+        Zona pisoMA = new Zona("Z011", "Piso", 2000, 180000);
+        Zona gradaMA = new Zona("Z012", "Gradería", 4000, 70000);
+        for (int i = 1; i <= 10; i++) {
+            pisoMA.addAsiento(new Asiento("A-PI" + i, "PI", String.valueOf(i)));
+            gradaMA.addAsiento(new Asiento("A-GR" + i, "GR", String.valueOf(i)));
+        }
+        movistarArena.administrarZonas(pisoMA);
+        movistarArena.administrarZonas(gradaMA);
+
+        recintos.addAll(Arrays.asList(estadio, teatro, centro, plazaToros, movistarArena));
 
         // --- POLÍTICAS COMUNES ---
         PoliticasEvento polConcierto = new PoliticasEvento("Cancelación hasta 48h antes", "Reembolso del 80%");
@@ -120,36 +136,46 @@ public class GestionEventos {
 
         // --- EVENTOS (usando Builder) ---
         Evento e1 = new EventoBuilder().conId("E001").conNombre("Concierto Rock Nacional")
-                .conCategoria("Música").conDescripcion("Gran concierto con las mejores bandas de rock colombiano")
+                .conCategoria("Música").conDescripcion("Gran concierto con las mejores bandas de rock colombiano. Ven a disfrutar una noche épica de música en vivo.")
                 .enCiudad("Bogotá").enFecha(LocalDateTime.now().plusDays(30))
                 .conEstado(EstadoEvento.PUBLICADO).conRecinto(estadio).conPoliticas(polConcierto).build();
 
         Evento e2 = new EventoBuilder().conId("E002").conNombre("Hamlet - Shakespeare")
-                .conCategoria("Teatro").conDescripcion("Obra clásica de William Shakespeare presentada por la compañía nacional")
+                .conCategoria("Teatro").conDescripcion("La obra maestra de William Shakespeare presentada por la Compañía Nacional de Teatro en una producción inolvidable.")
                 .enCiudad("Bogotá").enFecha(LocalDateTime.now().plusDays(15))
                 .conEstado(EstadoEvento.PUBLICADO).conRecinto(teatro).conPoliticas(polTeatro).build();
 
         Evento e3 = new EventoBuilder().conId("E003").conNombre("DevConf Colombia 2026")
-                .conCategoria("Conferencia").conDescripcion("Conferencia de desarrollo de software y tecnología")
+                .conCategoria("Conferencia").conDescripcion("La conferencia más grande de desarrollo de software en Colombia. Networking, charlas y talleres de tecnología de punta.")
                 .enCiudad("Medellín").enFecha(LocalDateTime.now().plusDays(45))
                 .conEstado(EstadoEvento.PUBLICADO).conRecinto(centro).conPoliticas(polConferencia).build();
 
         Evento e4 = new EventoBuilder().conId("E004").conNombre("Festival Reggaetón")
-                .conCategoria("Música").conDescripcion("Los mejores artistas urbanos en un solo escenario")
+                .conCategoria("Música").conDescripcion("Los mejores artistas urbanos en un solo escenario. Bad Bunny, Karol G, Feid y más.")
                 .enCiudad("Medellín").enFecha(LocalDateTime.now().plusDays(60))
                 .conEstado(EstadoEvento.PUBLICADO).conRecinto(plazaToros).conPoliticas(polConcierto).build();
 
         Evento e5 = new EventoBuilder().conId("E005").conNombre("Concierto Sinfónico")
-                .conCategoria("Música").conDescripcion("Orquesta Filarmónica de Bogotá interpreta a Beethoven")
+                .conCategoria("Música").conDescripcion("La Orquesta Filarmónica de Bogotá interpreta las más grandes sinfonías de Beethoven y Mozart.")
                 .enCiudad("Bogotá").enFecha(LocalDateTime.now().plusDays(20))
                 .conEstado(EstadoEvento.BORRADOR).conRecinto(teatro).conPoliticas(polTeatro).build();
 
         Evento e6 = new EventoBuilder().conId("E006").conNombre("Stand Up Comedy Night")
-                .conCategoria("Comedia").conDescripcion("Noche de comedia con los mejores comediantes del país")
+                .conCategoria("Comedia").conDescripcion("Noche de risas con los mejores comediantes del país. Prepárate para una jornada de humor imperdible.")
                 .enCiudad("Bogotá").enFecha(LocalDateTime.now().plusDays(10))
                 .conEstado(EstadoEvento.PUBLICADO).conRecinto(centro).conPoliticas(polConferencia).build();
 
-        // Suscribir usuarios como observadores de algunos eventos
+        Evento e7 = new EventoBuilder().conId("E007").conNombre("Coldplay - Music of the Spheres")
+                .conCategoria("Música").conDescripcion("Coldplay llega a Bogotá con su tour mundial. Una experiencia audiovisual única e irrepetible.")
+                .enCiudad("Bogotá").enFecha(LocalDateTime.now().plusDays(75))
+                .conEstado(EstadoEvento.PUBLICADO).conRecinto(movistarArena).conPoliticas(polConcierto).build();
+
+        Evento e8 = new EventoBuilder().conId("E008").conNombre("Expo Tecnología 2026")
+                .conCategoria("Conferencia").conDescripcion("Exposición de nuevas tecnologías, inteligencia artificial, robótica y realidad virtual.")
+                .enCiudad("Medellín").enFecha(LocalDateTime.now().plusDays(35))
+                .conEstado(EstadoEvento.PUBLICADO).conRecinto(centro).conPoliticas(polConferencia).build();
+
+        // Suscribir usuarios como observadores
         e1.agregarObservador(juan);
         e1.agregarObservador(maria);
         e2.agregarObservador(ana);
@@ -157,17 +183,44 @@ public class GestionEventos {
         e4.agregarObservador(juan);
         e4.agregarObservador(carlos);
         e4.agregarObservador(ana);
+        e7.agregarObservador(juan);
+        e7.agregarObservador(maria);
+        e7.agregarObservador(pedro);
 
-        eventos.addAll(Arrays.asList(e1, e2, e3, e4, e5, e6));
+        eventos.addAll(Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8));
+
+        // --- COMPRAS DEMO ---
+        IEntradaFactory factory = new EntradaNumeradaFactory();
+        Entrada ent1 = factory.crearEntrada(generalE, generalE.getAsientos().get(0));
+        Compra c1 = new Compra("CMP-DEMO001", juan, e1);
+        c1.agregarEntrada(ent1);
+        c1.pagar();
+        c1.pagar(); // CONFIRMADA
+        compras.add(c1);
+        juan.getHistorialCompras().add(c1);
+
+        Entrada ent2 = factory.crearEntrada(palcoT, palcoT.getAsientos().get(0));
+        Compra c2 = new Compra("CMP-DEMO002", maria, e2);
+        c2.agregarEntrada(ent2);
+        c2.pagar();
+        compras.add(c2);
+        maria.getHistorialCompras().add(c2);
+
+        Entrada ent3 = factory.crearEntrada(salonA, salonA.getAsientos().get(0));
+        Compra c3 = new Compra("CMP-DEMO003", carlos, e3);
+        c3.agregarEntrada(ent3);
+        compras.add(c3);
+        carlos.getHistorialCompras().add(c3);
 
         System.out.println("=== Datos de prueba cargados: " + usuarios.size() + " usuarios, "
-                + eventos.size() + " eventos, " + recintos.size() + " recintos ===");
+                + eventos.size() + " eventos, " + recintos.size() + " recintos, "
+                + compras.size() + " compras demo ===");
     }
 
-    // ====================== GESTIÓN DE USUARIOS (RF-001, RF-012, RF-020) ======================
-    public Usuario registrarUsuario(String nombre, String email, String tel) {
+    // ====================== GESTIÓN DE USUARIOS (RF-001, RF-002, RF-012, RF-020) ======================
+    public Usuario registrarUsuario(String nombre, String email, String tel, String password) {
         String id = "U" + String.format("%03d", usuarios.size() + 1);
-        Usuario u = new Usuario(id, nombre, email, tel, "1234", false);
+        Usuario u = new Usuario(id, nombre, email, tel, password, false);
         usuarios.add(u);
         return u;
     }
@@ -182,14 +235,20 @@ public class GestionEventos {
         System.out.println("Usuario " + u.getIdUsuario() + " actualizado.");
     }
 
+    public void eliminarUsuario(String id) {
+        usuarios.removeIf(u -> u.getIdUsuario().equals(id));
+    }
+
     public List<Usuario> listarUsuarios() { return new ArrayList<>(usuarios); }
 
-    // ====================== GESTIÓN DE EVENTOS (RF-003, RF-013, RF-024) ======================
+    // ====================== GESTIÓN DE EVENTOS (RF-003, RF-013, RF-023, RF-024) ======================
     public List<Evento> explorarEventos(Filtros f) {
         return eventos.stream()
                 .filter(e -> e.getEstado() == EstadoEvento.PUBLICADO)
                 .filter(e -> f.getCiudad() == null || f.getCiudad().isEmpty() || e.getCiudad().equalsIgnoreCase(f.getCiudad()))
                 .filter(e -> f.getCategoria() == null || f.getCategoria().isEmpty() || e.getCategoria().equalsIgnoreCase(f.getCategoria()))
+                .filter(e -> f.getPrecioMax() <= 0 || (e.getRecintoAsociado() != null &&
+                        e.getRecintoAsociado().getZonas().stream().anyMatch(z -> z.getPrecioBase() <= f.getPrecioMax())))
                 .collect(Collectors.toList());
     }
 
@@ -217,10 +276,11 @@ public class GestionEventos {
 
     public List<Evento> listarEventos() { return new ArrayList<>(eventos); }
 
-    // ====================== GESTIÓN DE RECINTOS (RF-014) ======================
+    // ====================== GESTIÓN DE RECINTOS (RF-014, RF-026, RF-027) ======================
     public void crearRecinto(Recinto r) { recintos.add(r); }
     public void actualizarRecinto(Recinto r) { System.out.println("Recinto actualizado: " + r.getNombre()); }
     public void eliminarRecinto(String id) { recintos.removeIf(r -> r.getIdRecinto().equals(id)); }
+    public List<Recinto> listarRecintos() { return new ArrayList<>(recintos); }
     public void crearZona(Recinto r, Zona z) { r.administrarZonas(z); }
     public void actualizarZona(Zona z) { System.out.println("Zona actualizada: " + z.getNombre()); }
     public void eliminarZona(String id) {
@@ -246,11 +306,15 @@ public class GestionEventos {
     public void cancelarCompra(Compra c) {
         c.cancelar();
         for (Entrada e : c.getItemsCompra()) e.anular();
+        registrarIncidencia(new Incidencia("INC-" + System.currentTimeMillis(),
+                "Cancelación de Compra", "Compra " + c.getIdCompra() + " cancelada", c.getIdCompra()));
     }
 
     public List<Compra> consultarHistorialCompras(Usuario u, Filtros f) {
         return compras.stream()
                 .filter(c -> c.getUsuarioAsociado().getIdUsuario().equals(u.getIdUsuario()))
+                .filter(c -> f.getEstado() == null || f.getEstado().isEmpty() ||
+                        c.getEstadoActual().getNombreEstado().equalsIgnoreCase(f.getEstado()))
                 .collect(Collectors.toList());
     }
 
@@ -272,10 +336,13 @@ public class GestionEventos {
     }
 
     public List<Incidencia> consultarIncidencias(Filtros f) {
-        return new ArrayList<>(incidencias);
+        return incidencias.stream()
+                .filter(i -> f.getFechaInicio() == null || !i.getFecha().toLocalDate().isBefore(f.getFechaInicio()))
+                .filter(i -> f.getFechaFin() == null || !i.getFecha().toLocalDate().isAfter(f.getFechaFin()))
+                .collect(Collectors.toList());
     }
 
-    // ====================== MÉTRICAS (RF-018) ======================
+    // ====================== MÉTRICAS (RF-018, RF-019) ======================
     public Map<String, Double> obtenerVentasPorPeriodo(LocalDate inicio, LocalDate fin) {
         Map<String, Double> resultado = new LinkedHashMap<>();
         for (Compra c : compras) {
@@ -295,6 +362,25 @@ public class GestionEventos {
                 resultado.put(z.getNombre(), z.consultarOcupacion());
             }
         }
+        return resultado;
+    }
+
+    public Map<String, Double> obtenerIngresosServiciosAdicionales(Evento e) {
+        Map<String, Double> resultado = new LinkedHashMap<>();
+        double ingresoVip = 0, ingresoSeguro = 0, ingresoMerch = 0;
+        for (Compra c : compras) {
+            if (c.getEventoAsociado().getIdEvento().equals(e.getIdEvento())) {
+                for (Entrada ent : c.getItemsCompra()) {
+                    String entStr = ent.toString();
+                    if (entStr.contains("VIP")) ingresoVip += 50000;
+                    if (entStr.contains("Seguro")) ingresoSeguro += 15000;
+                    if (entStr.contains("Merch")) ingresoMerch += 25000;
+                }
+            }
+        }
+        resultado.put("Acceso VIP", ingresoVip);
+        resultado.put("Seguro Cancelación", ingresoSeguro);
+        resultado.put("Merchandising", ingresoMerch);
         return resultado;
     }
 

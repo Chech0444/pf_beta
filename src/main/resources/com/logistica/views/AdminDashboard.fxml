@@ -1,43 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.AdminDashboardController" style="-fx-background-color: #1a1a2e;">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.logistica.viewController.AdminDashboardController"
+            stylesheets="@../css/styles.css">
     <top>
-        <VBox spacing="8" style="-fx-background-color: #16213e; -fx-padding: 12;">
-            <HBox spacing="15" alignment="CENTER_LEFT">
-                <Label text="BookIt - Panel Administrador" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
-                <Region HBox.hgrow="ALWAYS" />
-                <Button text="Cerrar Sesión" onAction="#logout" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
-            </HBox>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button text="Reporte PDF" onAction="#generarPDF" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-padding: 8; -fx-font-weight: bold;" />
-                <Button text="Reporte CSV" onAction="#generarCSV" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-padding: 8; -fx-font-weight: bold;" />
-                <Button text="Cancelar Evento Seleccionado" onAction="#cancelarEvento" style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-padding: 8;" />
-                <Button text="Publicar Evento Seleccionado" onAction="#publicarEvento" style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-padding: 8;" />
-            </HBox>
-        </VBox>
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+            <Label text="⚙️ BookIt Admin" styleClass="label-title" style="-fx-font-size: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Reporte PDF" onAction="#generarPDF" styleClass="btn-warn"/>
+            <Button text="Reporte CSV" onAction="#generarCSV" styleClass="btn-warn"/>
+            <Button text="Cerrar Sesión" onAction="#logout" styleClass="button"/>
+        </HBox>
     </top>
     <center>
-        <HBox spacing="15" style="-fx-padding: 15;">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Eventos" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
-                <ListView fx:id="lstEventos" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
-                <Label text="Usuarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
-                <ListView fx:id="lstUsuarios" prefHeight="150" style="-fx-background-color: #16213e;" />
-                <Label text="Compras" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
-                <ListView fx:id="lstCompras" prefHeight="150" style="-fx-background-color: #16213e;" />
-            </VBox>
-            <VBox spacing="10" prefWidth="350">
-                <Label text="Ocupación por Zona" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
-                <PieChart fx:id="chartOcupacion" prefHeight="280" />
-                <Label text="Incidencias" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
-                <ListView fx:id="lstIncidencias" prefHeight="150" style="-fx-background-color: #16213e;" />
-                <Label fx:id="lblMetricas" wrapText="true" style="-fx-text-fill: #a0a0a0; -fx-font-size: 12;" />
-            </VBox>
-        </HBox>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <!-- TAB: EVENTOS -->
+            <Tab text="Eventos">
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Button text="Publicar" onAction="#publicarEvento" styleClass="btn-success"/>
+                        <Button text="Pausar" onAction="#pausarEvento" styleClass="btn-warn"/>
+                        <Button text="Cancelar" onAction="#cancelarEvento" styleClass="btn-danger"/>
+                        <Button text="Eliminar" onAction="#eliminarEvento" styleClass="btn-danger"/>
+                    </HBox>
+                    <TableView fx:id="tblEventos" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colEvId" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="colEvNombre" text="Nombre" prefWidth="200"/>
+                            <TableColumn fx:id="colEvCategoria" text="Categoría" prefWidth="100"/>
+                            <TableColumn fx:id="colEvCiudad" text="Ciudad" prefWidth="100"/>
+                            <TableColumn fx:id="colEvFecha" text="Fecha" prefWidth="120"/>
+                            <TableColumn fx:id="colEvEstado" text="Estado" prefWidth="100"/>
+                            <TableColumn fx:id="colEvRecinto" text="Recinto" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <!-- TAB: USUARIOS -->
+            <Tab text="Usuarios">
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <HBox spacing="8">
+                        <Button text="Eliminar Usuario" onAction="#eliminarUsuario" styleClass="btn-danger"/>
+                    </HBox>
+                    <TableView fx:id="tblUsuarios" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colUsId" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="colUsNombre" text="Nombre" prefWidth="180"/>
+                            <TableColumn fx:id="colUsEmail" text="Email" prefWidth="200"/>
+                            <TableColumn fx:id="colUsTel" text="Teléfono" prefWidth="120"/>
+                            <TableColumn fx:id="colUsRol" text="Rol" prefWidth="80"/>
+                            <TableColumn fx:id="colUsCompras" text="Compras" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <!-- TAB: COMPRAS -->
+            <Tab text="Compras">
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <HBox spacing="8">
+                        <Button text="Cancelar Compra" onAction="#cancelarCompraAdmin" styleClass="btn-danger"/>
+                        <Button text="Registrar Reembolso" onAction="#registrarReembolso" styleClass="btn-warn"/>
+                    </HBox>
+                    <TableView fx:id="tblCompras" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCmpId" text="ID" prefWidth="140"/>
+                            <TableColumn fx:id="colCmpCliente" text="Cliente" prefWidth="150"/>
+                            <TableColumn fx:id="colCmpEvento" text="Evento" prefWidth="170"/>
+                            <TableColumn fx:id="colCmpTotal" text="Total" prefWidth="100"/>
+                            <TableColumn fx:id="colCmpEstado" text="Estado" prefWidth="100"/>
+                            <TableColumn fx:id="colCmpFecha" text="Fecha" prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <!-- TAB: RECINTOS -->
+            <Tab text="Recintos">
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <TableView fx:id="tblRecintos" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colRecId" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="colRecNombre" text="Nombre" prefWidth="200"/>
+                            <TableColumn fx:id="colRecCiudad" text="Ciudad" prefWidth="120"/>
+                            <TableColumn fx:id="colRecDir" text="Dirección" prefWidth="200"/>
+                            <TableColumn fx:id="colRecZonas" text="Zonas" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+            <!-- TAB: MÉTRICAS -->
+            <Tab text="Métricas">
+                <VBox spacing="12" style="-fx-padding: 10;">
+                    <HBox spacing="16">
+                        <VBox styleClass="card" prefWidth="200" alignment="CENTER">
+                            <padding><Insets top="14" bottom="14" left="14" right="14"/></padding>
+                            <Label text="Total Compras" styleClass="label-muted"/>
+                            <Label fx:id="lblTotalCompras" styleClass="label-price" style="-fx-font-size: 28;"/>
+                        </VBox>
+                        <VBox styleClass="card" prefWidth="200" alignment="CENTER">
+                            <padding><Insets top="14" bottom="14" left="14" right="14"/></padding>
+                            <Label text="Tasa Cancelación" styleClass="label-muted"/>
+                            <Label fx:id="lblTasaCancelacion" style="-fx-font-size: 28; -fx-text-fill: #f85149; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox styleClass="card" prefWidth="200" alignment="CENTER">
+                            <padding><Insets top="14" bottom="14" left="14" right="14"/></padding>
+                            <Label text="Total Eventos" styleClass="label-muted"/>
+                            <Label fx:id="lblTotalEventos" styleClass="label-price" style="-fx-font-size: 28;"/>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="16" VBox.vgrow="ALWAYS">
+                        <PieChart fx:id="chartOcupacion" prefWidth="400" prefHeight="280"/>
+                        <BarChart fx:id="chartVentas" prefWidth="450" prefHeight="280">
+                            <xAxis><CategoryAxis label="Evento"/></xAxis>
+                            <yAxis><NumberAxis label="Ventas ($)"/></yAxis>
+                        </BarChart>
+                    </HBox>
+                    <!-- INCIDENCIAS -->
+                    <Label text="Incidencias Recientes" styleClass="label-section"/>
+                    <ListView fx:id="lstIncidencias" prefHeight="120"/>
+                </VBox>
+            </Tab>
+        </TabPane>
     </center>
 </BorderPane>

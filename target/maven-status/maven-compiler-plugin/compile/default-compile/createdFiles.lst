@@ -12,6 +12,7 @@ com/logistica/model/MetodoPago.class
 com/logistica/model/proxy/IReporteService.class
 com/logistica/model/Incidencia.class
 com/logistica/model/Zona.class
+com/logistica/model/EstadoEntrada.class
 com/logistica/model/EstadoAsiento.class
 com/logistica/viewController/EventDetailController.class
 com/logistica/model/strategy/TarifaEstandar.class
@@ -22,6 +23,7 @@ com/logistica/model/state/CompraCreada.class
 com/logistica/model/Usuario.class
 com/logistica/model/state/CompraReembolsada.class
 com/logistica/model/adapter/IPagoAdapter.class
+com/logistica/viewController/PerfilController.class
 com/logistica/model/decorator/ServicioDecorator.class
 com/logistica/MainApp.class
 com/logistica/model/strategy/TarifaPreventa.class
@@ -38,7 +40,9 @@ com/logistica/model/state/CompraCancelada.class
 com/logistica/model/decorator/SeguroCancelacionDecorator.class
 com/logistica/viewController/LoginController.class
 com/logistica/model/Compra.class
+com/logistica/viewController/RegistroController.class
 com/logistica/model/proxy/ReporteProxy.class
+com/logistica/viewController/EventDetailController$1.class
 com/logistica/model/adapter/PayPalAdapter.class
 com/logistica/model/factory/EntradaNumeradaFactory.class
 com/logistica/model/state/IEstadoCompra.class

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.logistica.viewController.RegistroController"
+      stylesheets="@../css/styles.css">
+    <padding><Insets top="40" bottom="40" left="40" right="40"/></padding>
+    <VBox alignment="CENTER" spacing="12" styleClass="card" maxWidth="420">
+        <padding><Insets top="25" bottom="25" left="25" right="25"/></padding>
+        <Label text="📝 Crear Cuenta" styleClass="label-title"/>
+        <Label text="Completa tus datos para registrarte" styleClass="label-subtitle"/>
+        <Separator />
+        <VBox spacing="6" alignment="CENTER_LEFT">
+            <Label text="Nombre completo" styleClass="label-muted"/>
+            <TextField fx:id="txtNombre" promptText="Juan Pérez"/>
+            <Label text="Correo electrónico" styleClass="label-muted"/>
+            <TextField fx:id="txtEmail" promptText="correo@ejemplo.com"/>
+            <Label text="Teléfono" styleClass="label-muted"/>
+            <TextField fx:id="txtTelefono" promptText="3001234567"/>
+            <Label text="Contraseña" styleClass="label-muted"/>
+            <PasswordField fx:id="txtPass" promptText="••••••••"/>
+        </VBox>
+        <Button text="REGISTRARSE" onAction="#handleRegistro" styleClass="btn-success" maxWidth="Infinity"/>
+        <Button text="← Volver al Login" onAction="#handleVolver" styleClass="btn-ghost" maxWidth="Infinity"/>
+        <Label fx:id="lblMsg" styleClass="label-error"/>
+    </VBox>
+</VBox>

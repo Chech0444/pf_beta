@@ -1,0 +1,416 @@
+/* ========================================================
+   BookIt - Premium Dark Theme (Tuboleta/Ticketmaster style)
+   ======================================================== */
+
+/* --- ROOT VARIABLES --- */
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -bk-bg: #0d1117;
+    -bk-surface: #161b22;
+    -bk-card: #1c2333;
+    -bk-border: #30363d;
+    -bk-accent: #58a6ff;
+    -bk-accent2: #f78166;
+    -bk-success: #3fb950;
+    -bk-error: #f85149;
+    -bk-text: #e6edf3;
+    -bk-text2: #8b949e;
+    -bk-hover: #21262d;
+    -fx-background-color: -bk-bg;
+}
+
+/* --- SCROLL PANE --- */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-bar {
+    -fx-background-color: -bk-surface;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #30363d;
+    -fx-background-radius: 4;
+}
+
+/* --- LABELS --- */
+.label {
+    -fx-text-fill: -bk-text;
+}
+.label-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.label-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: -bk-text2;
+}
+.label-section {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -bk-accent;
+}
+.label-price {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -bk-success;
+}
+.label-error {
+    -fx-text-fill: -bk-error;
+    -fx-font-weight: bold;
+}
+.label-success {
+    -fx-text-fill: -bk-success;
+    -fx-font-weight: bold;
+}
+.label-muted {
+    -fx-text-fill: -bk-text2;
+    -fx-font-size: 12px;
+}
+
+/* --- BUTTONS --- */
+.button {
+    -fx-background-color: -bk-surface;
+    -fx-text-fill: -bk-text;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: -bk-hover;
+}
+.btn-primary {
+    -fx-background-color: -bk-accent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 10 24;
+}
+.btn-primary:hover {
+    -fx-background-color: #4090e0;
+}
+.btn-danger {
+    -fx-background-color: -bk-error;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 10 24;
+}
+.btn-danger:hover {
+    -fx-background-color: #d03030;
+}
+.btn-success {
+    -fx-background-color: -bk-success;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 10 24;
+}
+.btn-success:hover {
+    -fx-background-color: #2ea043;
+}
+.btn-warn {
+    -fx-background-color: -bk-accent2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-background-radius: 6;
+}
+.btn-warn:hover {
+    -fx-background-color: #d06a50;
+}
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-text-fill: -bk-text2;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.btn-ghost:hover {
+    -fx-background-color: -bk-hover;
+    -fx-text-fill: -bk-text;
+}
+
+/* --- TEXT FIELDS --- */
+.text-field, .password-field {
+    -fx-background-color: -bk-surface;
+    -fx-text-fill: -bk-text;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-prompt-text-fill: #555;
+}
+.text-field:focused, .password-field:focused {
+    -fx-border-color: -bk-accent;
+}
+
+/* --- COMBO BOX --- */
+.combo-box {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.combo-box .list-cell {
+    -fx-background-color: -bk-surface;
+    -fx-text-fill: -bk-text;
+}
+.combo-box .list-cell:hover {
+    -fx-background-color: -bk-hover;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: -bk-surface;
+    -fx-text-fill: -bk-text;
+}
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: -bk-hover;
+}
+
+/* --- CHECK BOX --- */
+.check-box {
+    -fx-text-fill: -bk-text;
+}
+.check-box .box {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+.check-box:selected .box {
+    -fx-background-color: -bk-accent;
+    -fx-border-color: -bk-accent;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+/* --- LIST VIEW --- */
+.list-view {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -bk-text;
+    -fx-padding: 8 12;
+}
+.list-view .list-cell:filled:hover {
+    -fx-background-color: -bk-hover;
+}
+.list-view .list-cell:filled:selected {
+    -fx-background-color: #1a3a5c;
+    -fx-text-fill: white;
+}
+
+/* --- TABLE VIEW --- */
+.table-view {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+}
+.table-view .column-header-background {
+    -fx-background-color: #1c2333;
+}
+.table-view .column-header {
+    -fx-background-color: #1c2333;
+    -fx-border-color: -bk-border;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -bk-accent;
+    -fx-font-weight: bold;
+}
+.table-view .table-row-cell {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: transparent;
+}
+.table-view .table-row-cell:selected {
+    -fx-background-color: #1a3a5c;
+}
+.table-view .table-cell {
+    -fx-text-fill: -bk-text;
+    -fx-padding: 6 10;
+}
+.table-view .table-row-cell:odd {
+    -fx-background-color: #12161e;
+}
+
+/* --- TAB PANE --- */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+.tab-pane .tab-header-area {
+    -fx-padding: 0;
+}
+.tab-pane .tab-header-background {
+    -fx-background-color: -bk-surface;
+}
+.tab {
+    -fx-background-color: -bk-surface;
+    -fx-padding: 8 18;
+}
+.tab .tab-label {
+    -fx-text-fill: -bk-text2;
+    -fx-font-weight: bold;
+}
+.tab:selected {
+    -fx-background-color: -bk-bg;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: -bk-accent;
+}
+.tab-pane .tab-content-area {
+    -fx-background-color: -bk-bg;
+    -fx-padding: 15;
+}
+
+/* --- CHARTS --- */
+.chart {
+    -fx-background-color: transparent;
+}
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.chart-legend {
+    -fx-background-color: -bk-surface;
+    -fx-padding: 6;
+}
+.chart-legend-item {
+    -fx-text-fill: -bk-text;
+}
+.chart-title {
+    -fx-text-fill: -bk-text;
+    -fx-font-weight: bold;
+}
+.axis {
+    -fx-tick-label-fill: -bk-text2;
+}
+.axis-label {
+    -fx-text-fill: -bk-text;
+}
+.chart-pie-label {
+    -fx-fill: -bk-text;
+}
+
+/* --- DATE PICKER --- */
+.date-picker {
+    -fx-background-color: -bk-surface;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+.date-picker .text-field {
+    -fx-background-color: -bk-surface;
+    -fx-text-fill: -bk-text;
+}
+
+/* --- CARD STYLE --- */
+.card {
+    -fx-background-color: -bk-card;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);
+}
+.card:hover {
+    -fx-border-color: -bk-accent;
+}
+
+/* --- TOOLBAR --- */
+.toolbar {
+    -fx-background-color: -bk-surface;
+    -fx-padding: 10 20;
+    -fx-border-color: transparent transparent -bk-border transparent;
+}
+
+/* --- SEAT MAP --- */
+.seat-available {
+    -fx-background-color: -bk-success;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.seat-available:hover {
+    -fx-background-color: #2ea043;
+    -fx-effect: dropshadow(gaussian, #3fb950, 6, 0.3, 0, 0);
+}
+.seat-sold {
+    -fx-background-color: -bk-error;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-background-radius: 5;
+    -fx-opacity: 0.6;
+}
+.seat-reserved {
+    -fx-background-color: #d29922;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-background-radius: 5;
+    -fx-opacity: 0.7;
+}
+.seat-blocked {
+    -fx-background-color: #484f58;
+    -fx-text-fill: #666;
+    -fx-font-size: 10px;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-background-radius: 5;
+}
+.seat-selected {
+    -fx-background-color: -bk-accent;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, #58a6ff, 8, 0.4, 0, 0);
+}
+
+/* --- SEPARATOR --- */
+.separator .line {
+    -fx-border-color: -bk-border;
+}
+
+/* --- TOOLTIP --- */
+.tooltip {
+    -fx-background-color: -bk-card;
+    -fx-text-fill: -bk-text;
+    -fx-border-color: -bk-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10;
+}
+
+/* --- DIALOG --- */
+.dialog-pane {
+    -fx-background-color: -bk-surface;
+}
+.dialog-pane .content {
+    -fx-padding: 15;
+}
+.dialog-pane .header-panel {
+    -fx-background-color: -bk-card;
+}

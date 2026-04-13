@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="12" alignment="TOP_CENTER" style="-fx-background-color: #1a1a2e; -fx-padding: 25;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.EventDetailController">
-    
-    <Label fx:id="lblNombre" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: white;" />
-    <Label fx:id="lblInfo" wrapText="true" style="-fx-text-fill: #a0a0a0; -fx-font-size: 13;" />
-    
-    <VBox spacing="6" style="-fx-background-color: #16213e; -fx-padding: 15; -fx-background-radius: 5;" maxWidth="600">
-        <Label fx:id="lblDescripcion" wrapText="true" style="-fx-text-fill: white;" />
-        <Label fx:id="lblLugar" style="-fx-text-fill: #a0a0a0;" />
-        <Label fx:id="lblFecha" style="-fx-text-fill: #a0a0a0;" />
-        <Label fx:id="lblPoliticas" wrapText="true" style="-fx-text-fill: #a0a0a0;" />
-    </VBox>
-    
-    <HBox spacing="12" alignment="CENTER">
-        <Label text="Zona:" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-        <ComboBox fx:id="cmbZonas" prefWidth="200" />
-        <Label text="Asiento:" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-        <ComboBox fx:id="cmbAsientos" prefWidth="150" />
-    </HBox>
-    
-    <HBox spacing="18" alignment="CENTER">
-        <CheckBox fx:id="chkVIP" text="Acceso VIP (+$50.000)" style="-fx-text-fill: white;" />
-        <CheckBox fx:id="chkSeguro" text="Seguro Cancelación (+$15.000)" style="-fx-text-fill: white;" />
-        <CheckBox fx:id="chkMerch" text="Merchandising (+$25.000)" style="-fx-text-fill: white;" />
-    </HBox>
-    
-    <HBox spacing="10" alignment="CENTER">
-        <Label text="Método de Pago:" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-        <ComboBox fx:id="cmbMetodoPago" prefWidth="200" />
-    </HBox>
-    
-    <Label fx:id="lblPrecio" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #4caf50;" />
-    
-    <HBox spacing="15" alignment="CENTER">
-        <Button text="COMPRAR" onAction="#handleComprar" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;" />
-        <Button text="VOLVER" onAction="#handleVolver" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 10 20;" />
-    </HBox>
-    <Label fx:id="lblMensaje" style="-fx-text-fill: #4caf50;" />
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.logistica.viewController.EventDetailController"
+            stylesheets="@../css/styles.css">
+    <top>
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+            <Button text="← Volver" onAction="#handleVolver" styleClass="btn-ghost"/>
+            <Label fx:id="lblNombre" styleClass="label-title" style="-fx-font-size: 20;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblInfo" styleClass="label-subtitle" style="-fx-font-size: 13;"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="16" style="-fx-padding: 20;">
+                <!-- Info Card -->
+                <HBox spacing="16">
+                    <VBox spacing="8" styleClass="card" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                        <Label text="Descripción" styleClass="label-section"/>
+                        <Label fx:id="lblDescripcion" wrapText="true"/>
+                        <Separator/>
+                        <Label fx:id="lblLugar" styleClass="label-muted"/>
+                        <Label fx:id="lblFecha" styleClass="label-muted"/>
+                        <Label fx:id="lblPoliticas" wrapText="true" styleClass="label-muted"/>
+                        <Label fx:id="lblAforo" styleClass="label-muted"/>
+                    </VBox>
+                    <!-- Purchase Card -->
+                    <VBox spacing="10" styleClass="card" prefWidth="320">
+                        <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                        <Label text="Comprar Entradas" styleClass="label-section"/>
+                        <Label text="Zona:" styleClass="label-muted"/>
+                        <ComboBox fx:id="cmbZonas" maxWidth="Infinity"/>
+                        <Label text="Asiento:" styleClass="label-muted"/>
+                        <ComboBox fx:id="cmbAsientos" maxWidth="Infinity"/>
+                        <Separator/>
+                        <Label text="Servicios Adicionales:" styleClass="label-muted"/>
+                        <CheckBox fx:id="chkVIP" text="Acceso VIP (+$50.000)"/>
+                        <CheckBox fx:id="chkSeguro" text="Seguro Cancelación (+$15.000)"/>
+                        <CheckBox fx:id="chkMerch" text="Merchandising (+$25.000)"/>
+                        <Separator/>
+                        <Label text="Método de Pago:" styleClass="label-muted"/>
+                        <ComboBox fx:id="cmbMetodoPago" maxWidth="Infinity"/>
+                        <Label fx:id="lblPrecio" styleClass="label-price"/>
+                        <Button text="🛒 COMPRAR" onAction="#handleComprar" styleClass="btn-primary" maxWidth="Infinity"/>
+                        <Label fx:id="lblMensaje" wrapText="true"/>
+                    </VBox>
+                </HBox>
+                <!-- Seat Map -->
+                <VBox spacing="8" styleClass="card">
+                    <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                    <Label text="Mapa de Asientos" styleClass="label-section"/>
+                    <Label text="🟢 Disponible  🔴 Vendido  🟡 Reservado  ⬛ Bloqueado  🔵 Seleccionado" styleClass="label-muted"/>
+                    <FlowPane fx:id="seatMap" hgap="6" vgap="6" style="-fx-padding: 10;"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
