@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.MisComprasController" style="-fx-background-color: #1a1a2e;">
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #16213e; -fx-padding: 12;">
+            <Label text="Mis Compras" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Cancelar Compra Seleccionada" onAction="#cancelarCompra" style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-padding: 8;" />
+            <Button text="Volver" onAction="#volver" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" style="-fx-padding: 18;">
+            <ListView fx:id="lstCompras" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
+            <Label fx:id="lblDetalle" wrapText="true" style="-fx-text-fill: #a0a0a0; -fx-font-size: 12;" />
+        </VBox>
+    </center>
+</BorderPane>

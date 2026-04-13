@@ -1,50 +1,47 @@
 package com.logistica.viewController;
 
-import com.logistica.controller.SistemaFacade;
+import com.logistica.controller.GestionEventos;
 import com.logistica.model.Usuario;
-import com.logistica.model.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController {
+    @FXML private TextField txtCorreo;
+    @FXML private PasswordField txtPassword;
+    @FXML private Label lblError;
 
-    @FXML
-    private TextField txtCorreo;
-    
-    @FXML
-    private Label lblError;
+    private static Usuario usuarioLogueado;
 
-    private SistemaFacade sistema = new SistemaFacade();
+    public static Usuario getUsuarioLogueado() { return usuarioLogueado; }
 
     @FXML
     private void handleLogin(ActionEvent event) {
         String correo = txtCorreo.getText();
-        if (correo == null || correo.trim().isEmpty()) {
-            lblError.setText("Error: Ingresa un correo electrónico");
+        String pass = txtPassword.getText();
+        if (correo == null || correo.isBlank()) {
+            lblError.setText("Ingresa un correo.");
             return;
         }
+        if (pass == null || pass.isBlank()) pass = "1234";
 
-        Usuario u = sistema.login(correo.trim());
+        Usuario u = GestionEventos.getInstance().iniciarSesion(correo.trim(), pass.trim());
         if (u != null) {
-            SessionManager.getInstance().setUsuarioActual(u);
-            lblError.setStyle("-fx-text-fill: #4caf50;");
-            lblError.setText("Login Exitoso! Hola " + u.getNombreCompleto());
-            System.out.println("--> Login exitoso: " + u.getNombreCompleto());
-            
+            usuarioLogueado = u;
             try {
-                javafx.scene.Parent dashboardParent = FXMLLoader.load(getClass().getResource("/com/logistica/views/Dashboard.fxml"));
-                javafx.scene.Scene dashboardScene = new javafx.scene.Scene(dashboardParent, 800, 600);
-                javafx.stage.Stage window = (javafx.stage.Stage) txtCorreo.getScene().getWindow();
-                window.setScene(dashboardScene);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                String vista = u.isEsAdmin() ? "/com/logistica/views/AdminDashboard.fxml" : "/com/logistica/views/UserDashboard.fxml";
+                Parent root = FXMLLoader.load(getClass().getResource(vista));
+                Stage window = (Stage) txtCorreo.getScene().getWindow();
+                window.setScene(new Scene(root, 900, 650));
+            } catch (Exception e) { e.printStackTrace(); }
         } else {
-            lblError.setStyle("-fx-text-fill: #e94560;");
-            lblError.setText("Error: Credenciales inválidas o usuario no existe");
+            lblError.setText("Credenciales inválidas. Intente de nuevo.");
         }
     }
 }

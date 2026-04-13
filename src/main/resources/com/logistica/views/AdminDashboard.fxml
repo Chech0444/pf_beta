@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.AdminDashboardController" style="-fx-background-color: #1a1a2e;">
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #16213e; -fx-padding: 12;">
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="BookIt - Panel Administrador" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Cerrar Sesión" onAction="#logout" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Reporte PDF" onAction="#generarPDF" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-padding: 8; -fx-font-weight: bold;" />
+                <Button text="Reporte CSV" onAction="#generarCSV" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-padding: 8; -fx-font-weight: bold;" />
+                <Button text="Cancelar Evento Seleccionado" onAction="#cancelarEvento" style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-padding: 8;" />
+                <Button text="Publicar Evento Seleccionado" onAction="#publicarEvento" style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-padding: 8;" />
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <HBox spacing="15" style="-fx-padding: 15;">
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Eventos" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
+                <ListView fx:id="lstEventos" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
+                <Label text="Usuarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
+                <ListView fx:id="lstUsuarios" prefHeight="150" style="-fx-background-color: #16213e;" />
+                <Label text="Compras" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
+                <ListView fx:id="lstCompras" prefHeight="150" style="-fx-background-color: #16213e;" />
+            </VBox>
+            <VBox spacing="10" prefWidth="350">
+                <Label text="Ocupación por Zona" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
+                <PieChart fx:id="chartOcupacion" prefHeight="280" />
+                <Label text="Incidencias" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" />
+                <ListView fx:id="lstIncidencias" prefHeight="150" style="-fx-background-color: #16213e;" />
+                <Label fx:id="lblMetricas" wrapText="true" style="-fx-text-fill: #a0a0a0; -fx-font-size: 12;" />
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

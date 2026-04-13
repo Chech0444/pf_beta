@@ -2,21 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.LoginController" stylesheets="@../css/styles.css" styleClass="root">
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.LoginController" style="-fx-background-color: #1a1a2e;">
+    <padding><Insets top="40" bottom="40" left="40" right="40"/></padding>
     
-    <Label text="Bienvenido a BookIt" styleClass="title-label" />
-    <Label text="Inicia sesión con tu correo" styleClass="subtitle-label" />
+    <Label text="BookIt - Plataforma de Eventos" style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: white;" />
+    <Label text="Inicia sesión para continuar" style="-fx-font-size: 14; -fx-text-fill: #a0a0a0;" />
     
-    <VBox spacing="10" maxWidth="300" alignment="CENTER_LEFT">
-        <Label text="Correo electrónico:" style="-fx-text-fill: white;" />
-        <TextField fx:id="txtCorreo" promptText="admin@logistica.com" styleClass="text-field-dark" />
-        
-        <Label text="Contraseña (simulada):" style="-fx-text-fill: white;" />
-        <PasswordField promptText="*********" styleClass="text-field-dark" />
+    <VBox spacing="8" maxWidth="320" alignment="CENTER_LEFT">
+        <Label text="Correo:" style="-fx-text-fill: white;" />
+        <TextField fx:id="txtCorreo" promptText="admin@logistica.com" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 8;" />
+        <Label text="Contraseña:" style="-fx-text-fill: white;" />
+        <PasswordField fx:id="txtPassword" promptText="****" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 8;" />
     </VBox>
     
-    <Button text="INICIAR SESIÓN" onAction="#handleLogin" styleClass="button-primary" />
-    <Label fx:id="lblError" textFill="#e94560" />
-
+    <Button text="INICIAR SESIÓN" onAction="#handleLogin" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30; -fx-cursor: hand;" />
+    <Label fx:id="lblError" style="-fx-text-fill: #e94560;" />
 </VBox>

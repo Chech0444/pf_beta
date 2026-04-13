@@ -18,14 +18,16 @@ public class Recinto {
         this.zonas = new ArrayList<>();
     }
 
+    public void administrarZonas(Zona z) {
+        this.zonas.add(z);
+    }
+
     public String getIdRecinto() { return idRecinto; }
     public String getNombre() { return nombre; }
     public String getDireccion() { return direccion; }
     public String getCiudad() { return ciudad; }
-
     public List<Zona> getZonas() { return zonas; }
-    
-    public void addZona(Zona zona) {
-        this.zonas.add(zona);
-    }
+
+    @Override
+    public String toString() { return nombre + " (" + ciudad + ")"; }
 }

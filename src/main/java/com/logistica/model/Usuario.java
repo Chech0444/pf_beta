@@ -1,51 +1,64 @@
 package com.logistica.model;
 
-import com.logistica.model.observer.IObserver;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario implements IObserver {
+/**
+ * Patrón Observer: Usuario actúa como observador de cambios en eventos.
+ */
+public class Usuario {
     private String idUsuario;
     private String nombreCompleto;
-    private String correoElectronico;
-    private String numeroTelefono;
-    private List<String> metodosDePago;
+    private String email;
+    private String telefono;
+    private String password;
+    private boolean esAdmin;
+    private List<MetodoPago> metodosPago;
+    private List<Compra> historialCompras;
 
-    public Usuario(String idUsuario, String nombreCompleto, String correoElectronico, String numeroTelefono) {
+    public Usuario(String idUsuario, String nombreCompleto, String email, String telefono, String password, boolean esAdmin) {
         this.idUsuario = idUsuario;
         this.nombreCompleto = nombreCompleto;
-        this.correoElectronico = correoElectronico;
-        this.numeroTelefono = numeroTelefono;
-        this.metodosDePago = new ArrayList<>();
+        this.email = email;
+        this.telefono = telefono;
+        this.password = password;
+        this.esAdmin = esAdmin;
+        this.metodosPago = new ArrayList<>();
+        this.historialCompras = new ArrayList<>();
     }
 
+    // Observer: recibe notificaciones
+    public void actualizar(String mensaje) {
+        System.out.println("[NOTIFICACIÓN -> " + email + "] " + mensaje);
+    }
+
+    public void gestionarPerfil() {
+        System.out.println("Gestionando perfil de " + nombreCompleto);
+    }
+
+    public void gestionarMetodosPago() {
+        System.out.println("Métodos de pago de " + nombreCompleto + ": " + metodosPago);
+    }
+
+    public void consultarComprasAsociadas() {
+        System.out.println("Compras de " + nombreCompleto + ": " + historialCompras.size());
+    }
+
+    // Getters y Setters
     public String getIdUsuario() { return idUsuario; }
-    public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
-    
     public String getNombreCompleto() { return nombreCompleto; }
-    public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }
-
-    public String getCorreoElectronico() { return correoElectronico; }
-    public void setCorreoElectronico(String correoElectronico) { this.correoElectronico = correoElectronico; }
-
-    public String getNumeroTelefono() { return numeroTelefono; }
-    public void setNumeroTelefono(String numeroTelefono) { this.numeroTelefono = numeroTelefono; }
-
-    public List<String> getMetodosDePago() { return metodosDePago; }
-    
-    public void addMetodoDePago(String metodo) {
-        if (!this.metodosDePago.contains(metodo)) {
-            this.metodosDePago.add(metodo);
-        }
-    }
+    public void setNombreCompleto(String n) { this.nombreCompleto = n; }
+    public String getEmail() { return email; }
+    public void setEmail(String e) { this.email = e; }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String t) { this.telefono = t; }
+    public String getPassword() { return password; }
+    public boolean isEsAdmin() { return esAdmin; }
+    public void setEsAdmin(boolean admin) { this.esAdmin = admin; }
+    public List<MetodoPago> getMetodosPago() { return metodosPago; }
+    public void addMetodoPago(MetodoPago m) { this.metodosPago.add(m); }
+    public List<Compra> getHistorialCompras() { return historialCompras; }
 
     @Override
-    public void updateEventoCancelado(Evento evento) {
-        // En una app real esto enviaría un email. Aquí simulamos en consola.
-        System.out.println("====== NOTIFICACIÓN ======");
-        System.out.println("Para: " + this.correoElectronico);
-        System.out.println("Mensaje: Lamentamos informale que el evento '" + evento.getNombre() + "' ha sido CANCELADO.");
-        System.out.println("==========================");
-    }
+    public String toString() { return nombreCompleto + " (" + email + ")"; }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.UserDashboardController" style="-fx-background-color: #1a1a2e;">
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #16213e; -fx-padding: 12;">
+            <Label text="BookIt - Portal Cliente" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Mis Compras" onAction="#verCompras" style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 8;" />
+            <Button text="Cerrar Sesión" onAction="#logout" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 8;" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="12" style="-fx-padding: 18;">
+            <Label text="Eventos Disponibles" style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;" />
+            <HBox spacing="10">
+                <TextField fx:id="txtFiltroCiudad" promptText="Filtrar por ciudad" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 6;" />
+                <TextField fx:id="txtFiltroCategoria" promptText="Filtrar por categoría" style="-fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-padding: 6;" />
+                <Button text="Buscar" onAction="#filtrarEventos" style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6 16;" />
+            </HBox>
+            <ListView fx:id="lstEventos" VBox.vgrow="ALWAYS" style="-fx-background-color: #16213e;" />
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Ver Detalles / Comprar" onAction="#verDetalles" style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25;" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
