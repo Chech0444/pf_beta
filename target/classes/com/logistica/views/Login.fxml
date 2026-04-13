@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logistica.viewController.LoginController" stylesheets="@../css/styles.css" styleClass="root">
+    
+    <Label text="Bienvenido a BookIt" styleClass="title-label" />
+    <Label text="Inicia sesión con tu correo" styleClass="subtitle-label" />
+    
+    <VBox spacing="10" maxWidth="300" alignment="CENTER_LEFT">
+        <Label text="Correo electrónico:" style="-fx-text-fill: white;" />
+        <TextField fx:id="txtCorreo" promptText="admin@logistica.com" styleClass="text-field-dark" />
+        
+        <Label text="Contraseña (simulada):" style="-fx-text-fill: white;" />
+        <PasswordField promptText="*********" styleClass="text-field-dark" />
+    </VBox>
+    
+    <Button text="INICIAR SESIÓN" onAction="#handleLogin" styleClass="button-primary" />
+    <Label fx:id="lblError" textFill="#e94560" />
+
+</VBox>
